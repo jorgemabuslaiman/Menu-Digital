@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Container, Row, Col, Modal } from "react-bootstrap";
 import { FaWifi, FaConciergeBell, FaHandPaper, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const FooterComponent = () => {
   const [mostrarwifi, setMostrarwifi] = useState(false);
@@ -52,6 +53,8 @@ export const FooterComponent = () => {
 
             <Col>
               <Button
+                as={Link} //as={Link} → le dice al Button que se comporte como un <Link> de React Router.
+                to="/login"
                 variant="outline-info"
                 className="w-100 d-flex flex-column align-items-center justify-content-center py-2"
               >
@@ -79,6 +82,7 @@ export const FooterComponent = () => {
         </Modal.Footer>
       </Modal>
 
+      {/* Modal Camarero */}
       <Modal show={mostrarcamarero} onHide={manejoCerrarCamarero} centered>
         <Modal.Header closeButton>
           <Modal.Title>Conexión WiFi</Modal.Title>
