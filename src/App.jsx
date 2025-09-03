@@ -5,6 +5,8 @@ import { HomePage } from './pages/homePage'
 import { LoginPage } from './pages/loginPage'
 import { CategoriacomidaPage } from './pages/categoriacomidaPage'
 import { PedidoPage } from './pages/pedidoPage'
+import { ErrorPage } from './pages/errorPage'
+import {DashboardAdmin} from './pages/dashboardAdmin'
 
 function App() {
 
@@ -15,7 +17,9 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/categoriacomida" element={<CategoriacomidaPage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
+          <Route path='/dashboardadmin' element={<DashboardAdmin/>}/>
           <Route path="/pedido" element={<PedidoPage/>}/>
+          <Route path="/*" element={<ErrorPage/>}/>
         </Routes>
       </BrowserRouter>
     </>
