@@ -1,20 +1,31 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Navbar, Button } from "react-bootstrap";
-import { BsChevronLeft, BsChevronRight, BsGift, BsCupStraw,} from "react-icons/bs";
-import { FaPizzaSlice } from "react-icons/fa";
-import { IoFastFood } from "react-icons/io5";
-import { PiBowlFood } from "react-icons/pi";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
-const categories = [
-  { id: "promo", label: "Promo", icon: <BsGift /> },
-  { id: "hamburguesas", label: "Hamburguesas", icon: <IoFastFood /> },
-  { id: "pizzas", label: "Pizzas", icon: <FaPizzaSlice /> }, // 👈 corregido
-  { id: "pastas", label: "Pastas", icon: <PiBowlFood /> },
-  { id: "bebidas", label: "Bebidas", icon: <BsCupStraw /> },
-];
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
-function NavbarCategorias() {
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Error en NavbarCategorias:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) return <h2>Algo salió mal en el menú de categorías.</h2>;
+    return this.props.children;
+  }
+}
+
+function NavbarCategoriasComponent({ categories = [] }) {
   const scrollRef = useRef(null);
+  const navigate = useNavigate();
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -26,13 +37,14 @@ function NavbarCategorias() {
     }
   };
 
+  const handleCategoryClick = (cat) => {
+    // Navegar a /categoriacomida pasando la categoría seleccionada por estado
+    navigate("/categoriacomida", { state: { selectedCategoryId: cat.id } });
+  };
+
   return (
     <Navbar bg="light" className="px-2 py-2 shadow-sm">
-      <Button
-        variant="outline-secondary"
-        className="me-2"
-        onClick={() => scroll("left")}
-      >
+      <Button variant="outline-secondary" className="me-2" onClick={() => scroll("left")}>
         <BsChevronLeft />
       </Button>
 
@@ -47,22 +59,34 @@ function NavbarCategorias() {
             variant="light"
             className="d-flex flex-column align-items-center justify-content-center me-3"
             style={{ minWidth: "80px" }}
+            onClick={() => handleCategoryClick(cat)}
           >
-            <span style={{ fontSize: "1.2rem" }}>{cat.icon}</span>
             <span style={{ fontSize: "0.8rem" }}>{cat.label}</span>
+            <img
+              src={cat.img || "https://via.placeholder.com/60x40"}
+              alt={cat.label || "Categoría"}
+              style={{
+                width: "60px",
+                height: "40px",
+                objectFit: "cover",
+                marginTop: "4px",
+              }}
+            />
           </Button>
         ))}
       </div>
 
-      <Button
-        variant="outline-secondary"
-        className="ms-2"
-        onClick={() => scroll("right")}
-      >
+      <Button variant="outline-secondary" className="ms-2" onClick={() => scroll("right")}>
         <BsChevronRight />
       </Button>
     </Navbar>
   );
 }
 
-export default NavbarCategorias;
+export default function NavbarCategorias(props) {
+  return (
+    <ErrorBoundary>
+      <NavbarCategoriasComponent {...props} />
+    </ErrorBoundary>
+  );
+}
