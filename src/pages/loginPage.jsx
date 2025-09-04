@@ -9,7 +9,7 @@ export const LoginPage = () => {
 
   // Usuario de prueba
   const user = {
-    username: "jorge",
+    username: "admin",
     password: "12345",
   };
 
