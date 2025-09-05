@@ -24,3 +24,98 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.login-container {
+  background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") 
+    no-repeat center center;
+  background-size: cover;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Animaciones */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Estilos de la página de error */
+.error-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+.error-emoji {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.error-title {
+  font-size: 80px;
+  font-weight: bold;
+  margin: 0;
+  animation: swing 2s ease-in-out infinite;
+}
+
+.error-subtitle {
+  font-size: 20px;
+  margin: 15px 0 30px;
+}
+
+.error-button {
+  padding: 14px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f59e0b; /* dorado cálido estilo restaurante */
+  color: #111;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.error-button:hover {
+  transform: scale(1.05);
+  background-color: #d97706;
+}

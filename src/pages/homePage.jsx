@@ -1,3 +1,5 @@
+//aqui lo que se quiere hacer es mostrar las categorias de comida
+
 import React, { useState, useEffect } from "react";
 import { HeaderComponent } from "../components/headerComponent";
 import NavbarCategorias from "../components/navbarCategorias";

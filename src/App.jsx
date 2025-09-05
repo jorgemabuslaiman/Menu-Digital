@@ -1,5 +1,7 @@
-import './App.css'
+//lo que hace esta apliacion web en react es la de gestionar un sistema de pedidos de comida
+
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router'
 import { HomePage } from './pages/homePage'
 import { LoginPage } from './pages/loginPage'
